@@ -1,8 +1,11 @@
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Products
-from .serializers import ProductSerializers
+from .models import Products , Orders
+from .serializers import ProductSerializers , OrdersSerializers
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+from rest_framework import mixins,generics 
+
 
 # Create your views here.
 @api_view(['GET','POST'])
@@ -38,3 +41,36 @@ def products_details(request,id,format=None):
         prod.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
+# #mixins
+# class OrdersList(mixins.ListModelMixin,mixins.CreateModelMixin, generics.GenericAPIView):
+#     queryset = Orders.objects.all()
+#     serializer_class = OrdersSerializers
+    
+#     def get(self, request):
+#         return self.list(request)
+    
+#     def post(self,request):
+#         return self.create(request)
+    
+# class OrderDetail(mixins.RetrieveModelMixin,mixins.UpdateModelMixin,mixins.DestroyModelMixin,generics.GenericAPIView):
+#     queryset = Orders.objects.all()
+#     serializer_class = OrdersSerializers
+
+#     def get(self,request,pk):
+#         return self.retrieve(request,pk)
+    
+#     def put(self,request,pk):
+#         return self.update(request,pk)
+    
+#     def delete(self,request,pk):
+#         return self.destroy(request,pk)
+
+# #Generics   
+# class OrderGenericsList(generics.ListCreateAPIView):
+#     queryset = Orders.objects.all()
+#     serializer_class = OrdersSerializers
+
+# class OrderGenericDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Orders.objects.all()
+#     serializer_class = OrdersSerializers
+#     lookup_field = "pk"

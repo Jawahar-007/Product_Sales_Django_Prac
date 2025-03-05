@@ -24,6 +24,10 @@ urlpatterns = [
     path('products/', views.products_list),
     path('products/<int:id>/', views.products_details),
 
+    path('orders/', views.OrderGenericsList.as_view()),
+    path('orders/<int:pk>/', views.OrderGenericDetail.as_view()),
+
+
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
