@@ -8,7 +8,7 @@ class Products(models.Model):
     category = models.TextField()
 
     def __str__(self):
-        return self.prod_name + ' ' + self.prod_description
+        return self.prod_name + '\n' + self.prod_description
     
 class Orders(models.Model):
     order_date = models.DateField()
@@ -18,7 +18,21 @@ class Orders(models.Model):
     customer_address = models.TextField()
     customer_phone = models.TextField()
     customer_email = models.TextField()
-    order_items = models.ManyToManyField(Products)
+    order_items = models.ManyToManyField(Products, related_name='orders')
 
     def __str__(self):
-        return self.customer_name + ' ' + self.order_status
+        return self.customer_name + '\n' + self.order_status
+    
+class Blog(models.Model):
+    blog_title = models.CharField(max_length=100)
+    blog_body = models.TextField()  
+
+    def __str__(self):
+        return self.blog_title
+    
+class Comment(models.Model):
+    blog = models.ForeignKey(Blog,on_delete=models.CASCADE,related_name="comments")
+    comment = models.TextField()
+
+    def __str__(self):
+        return self.comment
