@@ -18,7 +18,7 @@ class Orders(models.Model):
     customer_address = models.TextField()
     customer_phone = models.TextField()
     customer_email = models.TextField()
-    order_items = models.ManyToManyField(Products, related_name='orders')
+    order_item = models.ForeignKey(Products,on_delete=models.CASCADE,related_name="orders_item",default=None)
 
     def __str__(self):
         return self.customer_name + '\n' + self.order_status
