@@ -6,6 +6,8 @@ from .serializers import ProductSerializers,OrdersSerializers,BlogSerializers,Co
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework import mixins,generics,viewsets
+from .paginations import CustomPagination
+from .filters import ProductFilter
 
 
 # Create your views here.
@@ -118,6 +120,8 @@ from rest_framework import mixins,generics,viewsets
 class Products_View(generics.ListCreateAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductSerializers
+    pagination_class = CustomPagination
+    filterset_class = ProductFilter
 
 class Order_View(generics.ListCreateAPIView):
     queryset = Orders.objects.all()
