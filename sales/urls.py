@@ -40,6 +40,7 @@ urlpatterns = [
     path('orders/',views.Order_View.as_view()),
 
     path('blog/',views.Blog_View.as_view()),
+    path('blog/<int:pk>/',views.Blog_Detail().as_view()),
     path('comments/',views.Comment_view.as_view())
 ]
 """ # Apply format_suffix_patterns to urlpatterns
