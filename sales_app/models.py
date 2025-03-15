@@ -20,7 +20,7 @@ class Orders(models.Model):
     customer_address = models.TextField()
     customer_phone = models.TextField()
     customer_email = models.TextField()
-    order_item = models.ForeignKey(Products,on_delete=models.CASCADE,related_name="orders_item")
+    order_item = models.ForeignKey(Products,on_delete=models.CASCADE,related_name="orders_item",)
 
     def __str__(self):
         return self.customer_name + '\n' + self.order_status

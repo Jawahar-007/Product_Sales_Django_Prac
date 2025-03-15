@@ -29,7 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # path('products/', views.products_list),
-    # path('products/<int:id>/', views.products_details),
+    path('products/<int:id>/', views.Products_Detail.as_view()),
 
     # path('orders/', views.OrderGenericsList.as_view()),
     # path('orders/<int:pk>/', views.OrderGenericDetail.as_view()),

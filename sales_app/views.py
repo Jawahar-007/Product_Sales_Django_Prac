@@ -123,6 +123,11 @@ class Products_View(generics.ListCreateAPIView):
     pagination_class = CustomPagination
     filterset_class = ProductFilter
 
+class Products_Detail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Products.objects.all()
+    serializer_class = ProductSerializers
+    lookup_field = 'id'
+
 class Order_View(generics.ListCreateAPIView):
     queryset = Orders.objects.all()
     serializer_class = OrdersSerializers    
