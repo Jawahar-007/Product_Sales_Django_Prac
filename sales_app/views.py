@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from rest_framework import mixins,generics,viewsets
 from .paginations import CustomPagination
 from .filters import ProductFilter
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 
 # Create your views here.
@@ -135,6 +136,15 @@ class Order_View(generics.ListCreateAPIView):
 class Blog_View(generics.ListCreateAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializers
+    filter_backends = [SearchFilter,OrderingFilter]
+    search_fields = ['blog_title','blog_body']
+    ordering_fields = ['id','blog_title']
+
+class Blog_Detail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializers
+    lookup_field = 'id'
+
 
 class Comment_view(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
