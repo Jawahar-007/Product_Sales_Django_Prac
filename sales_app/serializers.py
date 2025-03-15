@@ -7,7 +7,7 @@ class ProductSerializers(serializers.ModelSerializer):
         fields = "__all__"
 
 class OrdersSerializers(serializers.ModelSerializer):
-    orders_item = ProductSerializers(many=True,read_only = True) # Note: Name given in related_name in model foreignKey 
+    orders_item = ProductSerializers(many=True) # Note: Name given in related_name in model foreignKey 
     class Meta:                                            # should be used as object name 'order'.
         model = Orders
         fields = "__all__"

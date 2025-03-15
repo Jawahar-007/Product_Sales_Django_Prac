@@ -2,8 +2,10 @@ from django.db import models
 
 # Create your models here.
 class Products(models.Model):
+
     prod_name = models.TextField()
     prod_description = models.TextField()
+    pp_no = models.TextField()
     prod_price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.TextField()
 
@@ -18,7 +20,7 @@ class Orders(models.Model):
     customer_address = models.TextField()
     customer_phone = models.TextField()
     customer_email = models.TextField()
-    order_item = models.ForeignKey(Products,on_delete=models.CASCADE,related_name="orders_item",default=None)
+    order_item = models.ForeignKey(Products,on_delete=models.CASCADE,related_name="orders_item")
 
     def __str__(self):
         return self.customer_name + '\n' + self.order_status

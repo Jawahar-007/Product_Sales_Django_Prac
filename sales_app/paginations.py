@@ -2,9 +2,9 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 class CustomPagination(PageNumberPagination):
-    page_size_query_param = 'products_size'
-    page_query_param = 'page_num'
-    max_page_size = 1
+    page_size_query_param = 'page_size'
+    page_query_param = 'products'
+    max_page_size = 10
 
     def get_paginated_response(self, data):
         return Response({
